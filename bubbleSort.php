@@ -12,7 +12,7 @@ function bubbleSort($array) {
 		return $array;
 	}
 
-	$len = count($array);   //元素个数小于2 直接返回
+	$len = count($array);    //元素个数小于2 直接返回
 	if($len < 2) {
 		return $array;
 	}
