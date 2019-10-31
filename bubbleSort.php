@@ -1,7 +1,8 @@
 <?php
 /**
  * 冒泡排序（升序）
- * @author  pengw
+ * @link   https://github.com/Echo-Mr-Pengw/
+ * @author pengw
  * @since  2019-10-31 20:37
  */
 
@@ -32,8 +33,6 @@ function bubbleSort($array) {
 			break;
 		}
 	}
-	
+
 	return $array;
 }
-
-var_dump(bubbleSort([2,60,1,0,45]));
