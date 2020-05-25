@@ -26,10 +26,14 @@ function selectSort($array) {
 		}
 
 		//交换
-		$tmp = $array[$minIndex];
-		$array[$minIndex] = $array[$i];
-		$array[$i] = $tmp;
+		if($i != $minIndex) {
+			$tmp = $array[$minIndex];
+			$array[$minIndex] = $array[$i];
+			$array[$i] = $tmp;
+		}
 	}
 
 	return $array;
 }
+
+var_dump(selectSort([2,4,6,1,0]));

@@ -36,3 +36,5 @@ function bubbleSort($array) {
 
 	return $array;
 }
+
+var_dump(bubbleSort([9,3,6,4,0,1]));
