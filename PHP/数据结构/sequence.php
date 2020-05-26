@@ -55,7 +55,7 @@ class Sequence {
 	public function getSequenceElem(int $index) {
 
 		// 判断下标的合法性
-		if($index <= 0 || $index > $this->seqLen) {
+		if($index <= 0 || $index >= $this->seqLen) {
 			return 'error';
 		}
 
@@ -72,11 +72,11 @@ class Sequence {
 	public function delSequenceElem(int $index) {
 
 		// 判断下标的合法性
-		if($index <= 0 || $index > $this->seqLen) {
+		if($index <= 0 || $index >= $this->seqLen) {
 			return 'error';
 		}
 
-		// 数据向迁移
+		// 数据向后迁移
 		for($i = $index - 1; $i < $this->seqLen; $i++) {
 			$this->seq[$i] = $this->seq[$i + 1];
 		}
@@ -103,16 +103,17 @@ class Sequence {
 
 		// 模拟扩容
 		$this->seq[$this->seqLen] = 0;
+		// 线性表长度+1
+		++$this->seqLen;
 
 		// 如果在最后一个元素后新加一个元素
-		if($index == ($this->seqLen)) {
+		if($index == ($this->seqLen - 1)) {
 			$this->seq[$this->seqLen] = $data;
 			return $this->seq;
 		}
 
-		for($i = ($this->seqLen - 1); $i >= $index; $i--) {
+		for($i = ($this->seqLen - 2); $i >= $index; $i--) {
 			$this->seq[$i + 1] = $this->seq[$i];
-			// var_dump($this->seq);
 		}
 
 		$this->seq[$index] = $data;
@@ -137,10 +138,13 @@ class Sequence {
 
 		// 模拟扩容
 		$this->seq[$this->seqLen] = 0;
+		// 线性表长度+1
+		++$this->seqLen;
+		// 小标-1
+		--$index;
 
-		for($i = ($this->seqLen - 1); $i >= ($index - 1); $i--) {
-			$this->seq[$i + 1] = $this->seq[$i];
-			// var_dump($this->seq);
+		for($i = ($this->seqLen - 1); $i >= $index; $i--) {
+			$this->seq[$i] = $this->seq[$i - 1];
 		}
 
 		$this->seq[$index] = $data;
@@ -150,10 +154,10 @@ class Sequence {
 
 }
 
-
-$s = new Sequence(range(1, 10));
+// 测试
+// $s = new Sequence(range(1, 10));
 // var_dump($s->getSequenceLength());   // 线性表的长度 10
 // var_dump($s->getSequenceElem(3));    // 通过下标获取线性表中某个元素： 3
 // var_dump($s->delSequenceElem(1));    // 通过下标删除线性表中某个元素
-// var_dump($s->afterAddSequenceElem(1, 'b'));  // 在某个下标元素之后添加某个元素
-var_dump($s->beforeAddSequenceElem(2, 'a'));
+// var_dump($s->afterAddSequenceElem(2, 'b'));  // 在某个下标元素之后添加某个元素
+// var_dump($s->beforeAddSequenceElem(2, 'a')); // 在某个下标元素之前添加某个元素
