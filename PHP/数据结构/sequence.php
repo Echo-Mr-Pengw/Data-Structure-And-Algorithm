@@ -55,7 +55,7 @@ class Sequence {
 	public function getSequenceElem(int $index) {
 
 		// 判断下标的合法性
-		if($index <= 0 || $index >= $this->seqLen) {
+		if($this->seqLen == 0 || $index < 1 || $index > $this->seqLen) {
 			return 'error';
 		}
 
@@ -72,7 +72,7 @@ class Sequence {
 	public function delSequenceElem(int $index) {
 
 		// 判断下标的合法性
-		if($index <= 0 || $index >= $this->seqLen) {
+		if($index < 1 || $index > $this->seqLen) {
 			return 'error';
 		}
 
@@ -97,7 +97,7 @@ class Sequence {
 	public function afterAddSequenceElem(int $index, string $data) {
 
 		// 判断下标的合法性
-		if($index <= 0 || $index > $this->seqLen) {
+		if($index < 1 || $index > $this->seqLen) {
 			return 'error';
 		}
 
