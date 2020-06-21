@@ -30,7 +30,7 @@ class Stack {
 		}
 
 		// 栈满
-		if(($top1 + 1) == $top2) {
+		if(($this->top1 + 1) == $this->top2) {
 			return '栈满';
 		}
 
