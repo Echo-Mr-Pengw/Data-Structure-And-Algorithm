@@ -1,40 +1,76 @@
 <?php
 /**
- * 冒泡排序（升序）
- * @link   https://github.com/Echo-Mr-Pengw/
- * @author pengw
- * @since  2019-10-31 20:37
+ * 冒泡排序
+ * @link   https://github.com/Echo-Mr-Pengw
+ * @author new1024kb
  */
 
-function bubbleSort($array) {
+class bubbleSort {
 
-	if(!is_array($array)) {  //不是数组 直接返回
-		return $array;
-	}
+	public function __construct(){}
 
-	$len = count($array);    //元素个数小于2 直接返回
-	if($len < 2) {
-		return $array;
-	}
+	public function __destruct(){}
 
-	for($i = 0; $i < $len; $i++) {
-		$mark = false;        //标记数据是否交换,默认为false(没有交换) 没有交换数据，表示数据以及排序完成，退出循环
-		for($j = 0; $j < $len-$i-1; $j++) {
-			if($array[$j] > $array[$j+1]) {
-				$mark        = true; //有数据交换，数据还未有序
-				$temp        = $array[$j];
-				$array[$j]   = $array[$j+1];
-				$array[$j+1] = $temp;
+	/**
+	 * [sort 升序]
+	 * @Author   pengw
+	 * @DateTime 2020-06-23T14:13:37+0800
+	 * @param    array                    $data [待排序的数据]
+	 * @return   [type]                         [description]
+	 */
+	public function sort(array $data) {
+
+		if(!is_array($data) || empty($data)) {
+			return '排序的数据有误';
+		}
+
+		$count = count($data);
+
+		for($i = 0; $i < $count; $i++) {
+			//标记数据是否交换,默认为false(没有交换) 没有交换数据，表示数据以及排序完成，退出循环
+			$falg = false;
+			for($j = 0; $j < $count - $i - 1; $j++) {
+				if($data[$j] > $data[$j + 1]) {
+					$tmp          = $data[$j];
+					$data[$j]     = $data[$j + 1];
+					$data[$j + 1] = $tmp;
+					$falg         = true;
+				}
+			}
+
+			if(!$falg) {
+				break;
 			}
 		}
 
-		//如果mark=false ,数据有序 则退出循环
-		if(!$mark) {
-			break;
-		}
-	}
+		// 降序
+		// for($i = 0; $i < $count; $i++) {
+		// 	for($j = 0; $j < $count - $i - 1; $j++) {
+		// 		if($data[$j] < $data[$j + 1]) {
+		// 			$tmp          = $data[$j];
+		// 			$data[$j]     = $data[$j + 1];
+		// 			$data[$j + 1] = $tmp;
+		// 		}
+		// 	}
+		// }
 
-	return $array;
+		return $data;
+	}
 }
 
-var_dump(bubbleSort([9,3,6,4,0,1]));
+$b = new bubbleSort();
+var_dump($b->sort([1,2,0,4,5,6]));
+// array(6) {
+//   [0]=>
+//   int(0)
+//   [1]=>
+//   int(1)
+//   [2]=>
+//   int(2)
+//   [3]=>
+//   int(4)
+//   [4]=>
+//   int(5)
+//   [5]=>
+//   int(6)
+// }
