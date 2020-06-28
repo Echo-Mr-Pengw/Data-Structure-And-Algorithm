@@ -2,32 +2,42 @@
 /**
  * 插入排序
  * @author  new1024kb
- * @since  2020-01-10
+ * @since  2020-06-28
  */
 
-/**
- * [insertSort 插入排序]
- * @param  array  $arr [待排序数组]
- * @return [array]
- */
-function insertSort(array $arr): array {
+class insertSort {
 
-	$len = count($arr);
+	public function __construct(){}
 
-	for($i = 1; $i < $len; $i++) {
-		$currentVal = $arr[$i];    //当前元素
-		$preIndex = $i - 1;        //前一个元素索引
+	public function __destruct(){}
 
-		//当前值大于前面的值，并且前元素索引大于等于0
-		while($preIndex >= 0 && $currentVal < $arr[$preIndex]) {
-			$arr[$preIndex+1] = $arr[$preIndex];
-			$preIndex--;
+	/**
+	 * [sort 升序]
+	 * @Author   pengw
+	 * @DateTime 2020-06-28T15:08:52+0800
+	 * @param    array                    $data [description]
+	 * @return   [type]                         [description]
+	 */
+	public function sort(array $data) {
+
+		if(!is_array($data) || empty($data)) {
+			return '排序的数据有误';
 		}
-		$arr[$preIndex+1] = $currentVal;
-	}
 
-	return $arr;
+		$count = count($data);
+
+		for($i = 1; $i < $count; $i++) {
+			$index = $i - 1;
+			$val = $data[$i];
+			while($index >= 0 && $data[$index] > $val) {
+				$data[$index + 1] = $data[$index];
+				--$index;
+			}
+			$data[$index + 1] = $val;
+		}
+		return $data;
+	}
 }
 
-//测试
-var_dump(insertSort([1,6,0,2,3,5]));
+$b = new insertSort();
+var_dump($b->sort([1,6,0,2,3,5]));
