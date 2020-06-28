@@ -1,39 +1,63 @@
 <?php 
 /**
- * 选择排序(升序)
+ * 选择排序
  * @link   https://github.com/Echo-Mr-Pengw/
- * @author pengw
- * @since  2019-10-31 21:23
+ * @author new1024kb
  */
 
-function selectSort($array) {
+class selectSort {
 
-	if(!is_array($array)) {
-		return $array;
-	}
+	public function __construct(){}
 
-	$len = count($array);
-	if($len < 2) {
-		return $array;
-	}
+	public function __destruct(){}
 
-	for($i = 0; $i < $len; $i++) {
-		$minIndex = $i;
-		for($j = $i+1; $j < $len; $j++) {
-			if($array[$j] < $array[$minIndex]) {
-				$minIndex = $j;
+	/**
+	 * [sort 升序]
+	 * @Author   pengw
+	 * @DateTime 2020-06-23T14:13:37+0800
+	 * @param    array                    $data [待排序的数据]
+	 * @return   [type]                         [description]
+	 */
+	public function sort(array $data) {
+
+		if(!is_array($data) || empty($data)) {
+			return '排序的数据有误';
+		}
+
+		$count = count($data);
+
+		for($i = 0; $i < $count; $i++) {
+			$min = $i;
+			for($j = $i + 1; $j < $count; $j++) {
+				if($data[$j] < $data[$min]) {    //  替换成 $data[$j] > $data[$min] 变成降序
+					$min = $j;
+				}
+			}
+
+			// 交换
+			if($i !== $min) {
+				$tmp        = $data[$i];
+				$data[$i]   = $data[$min];
+				$data[$min] = $tmp;
 			}
 		}
 
-		//交换
-		if($i != $minIndex) {
-			$tmp = $array[$minIndex];
-			$array[$minIndex] = $array[$i];
-			$array[$i] = $tmp;
-		}
+		return $data;
 	}
-
-	return $array;
 }
 
-var_dump(selectSort([2,4,6,1,0]));
+$b = new selectSort();
+var_dump($b->sort([6,3,9,1,0]));
+
+// array(5) {
+//   [0]=>
+//   int(0)
+//   [1]=>
+//   int(1)
+//   [2]=>
+//   int(3)
+//   [3]=>
+//   int(6)
+//   [4]=>
+//   int(9)
+// }
