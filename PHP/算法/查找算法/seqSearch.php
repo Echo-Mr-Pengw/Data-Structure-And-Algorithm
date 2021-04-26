@@ -36,6 +36,26 @@ class seqSearch {
 		}
 		return -1;   // 未找到返回-1
 	}
+
+	/**
+	 * 优化版
+	 * @Author   pengwei
+	 * @DateTime 2021-04-26
+	 * @param    string     $key [description]
+	 * @return   [type]          [description]
+	 */
+	public function search2(string $key)
+	{	
+		$i   = 0;
+		$len = count($this->data);
+		$this->data[$len] = $key;
+
+		while ($this->data[$i] != $key) {
+			++$i;
+		}
+
+		return ($i == $len) ? -1 : $i;
+	}
 }
 
 $key  = 5;
@@ -43,3 +63,4 @@ $data = [5,3,1,9,7,0];
 
 $s = new seqSearch($data);
 var_dump($s->search($key));
+var_dump($s->search2($key));
