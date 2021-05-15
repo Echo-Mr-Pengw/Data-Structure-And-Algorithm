@@ -27,12 +27,18 @@ class insertSort {
 		$count = count($data);
 
 		for($i = 1; $i < $count; $i++) {
+			// 标识是否有移动
+			$flag = false;
 			$index = $i - 1;
 			$val = $data[$i];
 			while($index >= 0 && $data[$index] > $val) {
+				$flag = true;
 				$data[$index + 1] = $data[$index];
 				--$index;
 			}
+
+			if (!$flag) break;
+			
 			$data[$index + 1] = $val;
 		}
 		return $data;
@@ -40,4 +46,4 @@ class insertSort {
 }
 
 $b = new insertSort();
-var_dump($b->sort([1,6,0,2,3,5]));
+var_dump($b->sort([6,1,0,2,3,5]));
